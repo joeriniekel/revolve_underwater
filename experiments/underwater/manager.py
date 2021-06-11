@@ -54,7 +54,6 @@ async def run():
         # Start the main life loop
         i = 0
         while True:
-            logger.info("What is happening?")
             if i >= 500: break
             #dist = robot_manager._positions[-1][2]
             #print(f" ITER: {i}\n"

@@ -5,7 +5,7 @@ from pyrevolve import SDF
 from pyrevolve.revolve_bot.revolve_module import ActiveHingeModule, Orientation, BoxSlot
 
 
-def revolve_bot_to_sdf(robot, robot_pose, nice_format, self_collide=True):
+def revolve_bot_to_sdf(robot, robot_pose, nice_format, add_buoyancy, self_collide=True):
     from xml.etree import ElementTree
     from pyrevolve import SDF
 
@@ -61,6 +61,31 @@ def revolve_bot_to_sdf(robot, robot_pose, nice_format, self_collide=True):
         link.align_center_of_mass()
         link.calculate_inertial()
         model.append(link)
+
+    # ADD BUOYANCY
+    if add_buoyancy:
+        lift_drag_plugin = xml.etree.ElementTree.Element(
+            'plugin',
+            attrib={
+                'name': 'LiftDragPlugin',
+                'filename': 'libLiftDragPlugin.so',
+            })
+        
+        SDF.sub_element_text(lift_drag_plugin, 'rho', '999.1026')
+        
+        model.append(lift_drag_plugin)
+        
+        buoyancy_plugin = xml.etree.ElementTree.Element(
+            'plugin',
+            attrib={
+                'name': 'BuoyancyPlugin',
+                'filename': 'libCustomBuoyancyPlugin.so',
+            })
+
+        #SDF.sub_element_text(buoyancy_plugin, 'surface_height', '-10')
+        #SDF.sub_element_text(buoyancy_plugin, 'fluid_density', '50000')
+        
+        model.append(buoyancy_plugin)
 
     # ADD BRAIN
     plugin_elem = _sdf_brain_plugin_conf(robot._brain, sensors, actuators, robot_genome=None)

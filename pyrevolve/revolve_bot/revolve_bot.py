@@ -156,10 +156,10 @@ class RevolveBot:
 
         self.load(robot, conf_type)
 
-    def to_sdf(self, pose=SDF.math.Vector3(0, 0, 0.25), nice_format=None):
+    def to_sdf(self, pose=SDF.math.Vector3(0, 0, 0.25), nice_format=None, add_buoyancy=False):
         if type(nice_format) is bool:
             nice_format = '\t' if nice_format else None
-        return SDF.revolve_bot_to_sdf(self, pose, nice_format, self_collide=self.self_collide)
+        return SDF.revolve_bot_to_sdf(self, pose, nice_format, add_buoyancy, self_collide=self.self_collide)
 
     def to_yaml(self):
         """
@@ -175,7 +175,7 @@ class RevolveBot:
 
         return yaml.dump(yaml_dict)
 
-    def save_file(self, path, conf_type='yaml'):
+    def save_file(self, path, conf_type='yaml', add_buoyancy=False):
         """
         Save robot's description on a given file path in a specified format
         :param path:
@@ -186,7 +186,7 @@ class RevolveBot:
         if 'yaml' == conf_type:
             robot = self.to_yaml()
         elif 'sdf' == conf_type:
-            robot = self.to_sdf(nice_format=True)
+            robot = self.to_sdf(nice_format=True, add_buoyancy=add_buoyancy)
 
         with open(path, 'w') as robot_file:
             robot_file.write(robot)
