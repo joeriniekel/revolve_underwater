@@ -42,24 +42,24 @@ async def run():
     # load robot file
     robot = RevolveBot(_id=settings.test_robot)
     robot.load_file("experiments/examples/yaml/spider.yaml", conf_type='yaml')
-    robot.save_file(f'{"experiments/examples/yaml/spider.yaml"}.sdf', conf_type='sdf', add_buoyancy=True)
+    robot.save_file(f'{"experiments/examples/yaml/spider.yaml"}.sdf', conf_type='sdf', add_buoyancy=False)
 
     # insert robot into the simulator
-    robot_manager = await connection.insert_robot(robot, Vector3(0, 0, 0.25), life_timeout=None, add_buoyancy=True)
+    robot_manager = await connection.insert_robot(robot, Vector3(0, 0, 0.25), life_timeout=None, add_buoyancy=False)
     await asyncio.sleep(1.0)
 
     # measures.velocity is not a good way to measure vertical velocity (probably only does horizontal)
 
-    with open('experiments/underwater/water_speed.txt', 'w') as file:
+    with open('experiments/underwater/air_heights.txt', 'w') as file:
         # Start the main life loop
         i = 0
         while True:
-            if i >= 500: break
-            #dist = robot_manager._positions[-1][2]
+            if i >= 101: break
+            dist = robot_manager._positions[-1][2]
             #print(f" ITER: {i}\n"
                 #f" DIST: {dist}")
-            #file.write(str(dist)+ '\n')
-            await asyncio.sleep(0.1)
+            file.write(str(dist)+ '\n')
+            await asyncio.sleep(0.2)
             i+=1
     
     file.close()

@@ -81,9 +81,6 @@ def revolve_bot_to_sdf(robot, robot_pose, nice_format, add_buoyancy, self_collid
                 'name': 'BuoyancyPlugin',
                 'filename': 'libCustomBuoyancyPlugin.so',
             })
-
-        #SDF.sub_element_text(buoyancy_plugin, 'surface_height', '-10')
-        #SDF.sub_element_text(buoyancy_plugin, 'fluid_density', '50000')
         
         model.append(buoyancy_plugin)
 
