@@ -14,4 +14,4 @@ def plot_height(type):
         plt.xlabel('Time in seconds')
         plt.savefig('experiments/underwater/'+type+'_plot.png')
 
-#plot_height('water_no_drag')
+#plot_height('water')
