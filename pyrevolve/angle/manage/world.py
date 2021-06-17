@@ -412,7 +412,7 @@ class WorldManager(manage.WorldManager):
             revolve_bot,
             pose=Vector3(0, 0, 0.05),
             life_timeout=None,
-            add_buoyancy=False
+            underwater=False
     ):
         """
         Inserts a robot into the world. This consists of two steps:
@@ -439,7 +439,7 @@ class WorldManager(manage.WorldManager):
         # environment and give weird crash errors
         assert(not str(revolve_bot.id).isdigit())
 
-        sdf_bot = revolve_bot.to_sdf(pose, add_buoyancy= add_buoyancy)
+        sdf_bot = revolve_bot.to_sdf(pose, underwater= underwater)
 
         # if self.output_directory:
         #     robot_file_path = os.path.join(

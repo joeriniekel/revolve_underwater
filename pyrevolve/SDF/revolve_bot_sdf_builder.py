@@ -5,7 +5,7 @@ from pyrevolve import SDF
 from pyrevolve.revolve_bot.revolve_module import ActiveHingeModule, Orientation, BoxSlot
 
 
-def revolve_bot_to_sdf(robot, robot_pose, nice_format, add_buoyancy, self_collide=True):
+def revolve_bot_to_sdf(robot, robot_pose, nice_format, underwater, self_collide=True):
     from xml.etree import ElementTree
     from pyrevolve import SDF
 
@@ -63,7 +63,7 @@ def revolve_bot_to_sdf(robot, robot_pose, nice_format, add_buoyancy, self_collid
         model.append(link)
 
     # ADD BUOYANCY
-    if add_buoyancy:
+    if underwater:
         lift_drag_plugin = xml.etree.ElementTree.Element(
             'plugin',
             attrib={
