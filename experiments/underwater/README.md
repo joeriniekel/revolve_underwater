@@ -43,3 +43,5 @@ else if (collisionName.find("NewModuleIdentfier") != std::string::npos) // if th
 }
 ```
 To change the volume of an existing or new module, first you can calculate the volume from the mesh of the module using the function `volumeOfMesh` in `calculate_volume.py`, this new value can then be put into the `if` or `else if` statements in `BuoyancyPlugin.cc`
+
+After making any changes to `BuoyancyPlugin.cc` you need to redo the installation process to apply them to the simulation.
