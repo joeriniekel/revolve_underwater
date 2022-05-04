@@ -412,7 +412,7 @@ class WorldManager(manage.WorldManager):
             revolve_bot,
             pose=Vector3(0, 0, 0.05),
             life_timeout=None,
-            underwater=False
+            underwater=True
     ):
         """
         Inserts a robot into the world. This consists of two steps:
