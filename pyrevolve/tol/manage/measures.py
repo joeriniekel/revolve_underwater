@@ -21,6 +21,8 @@ class BehaviouralMeasurements:
             self.displacement = displacement(robot_manager)
             self.displacement_velocity = displacement_velocity(robot_manager)
             self.displacement_velocity_hill = displacement_velocity_hill(robot_manager)
+            self.displacement_velocity_upward = displacement_velocity_upward(robot_manager)
+            self.displacement_velocity_3d = displacement_velocity_3d(robot_manager)
             self.head_balance = head_balance(robot_manager)
             self.contacts = contacts(robot_manager, robot)
         else:
@@ -28,6 +30,8 @@ class BehaviouralMeasurements:
             self.displacement = None
             self.displacement_velocity = None
             self.displacement_velocity_hill = None
+            self.displacement_velocity_upward = None
+            self.displacement_velocity_3d = None
             self.head_balance = None
             self.contacts = None
 
@@ -37,6 +41,8 @@ class BehaviouralMeasurements:
             #'displacement': self.displacement,
             'displacement_velocity': self.displacement_velocity,
             'displacement_velocity_hill': self.displacement_velocity_hill,
+            'displacement_velocity_upward': self.displacement_velocity_upward,
+            'displacement_velocity_3d': self.displacement_velocity_3d,
             'head_balance': self.head_balance,
             'contacts': self.contacts
         }.items()
@@ -91,6 +97,27 @@ def displacement_velocity_hill(robot_manager):
     if time.is_zero():
         return 0.0
     return dist.y / float(time)
+
+
+def displacement_velocity_upward(robot_manager):
+    dist, time = displacement(robot_manager)
+    if time.is_zero():
+        return 0.0
+    return dist.z / float(time)
+
+
+def displacement_velocity_3d(robot_manager):
+    """
+    Returns the displacement velocity, i.e. the velocity
+    between the first and last recorded position of the
+    robot in the speed window over a straight line,
+    ignoring the path that was taken.
+    :return:
+    """
+    dist, time = displacement(robot_manager)
+    if time.is_zero():
+        return 0.0
+    return np.sqrt(dist.x ** 2 + dist.y ** 2 + dist.z ** 2) / float(time)
 
 
 def head_balance(robot_manager):

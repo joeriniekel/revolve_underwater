@@ -20,6 +20,19 @@ def displacement_velocity(robot_manager, robot):
     return measures.displacement_velocity(robot_manager)
 
 
+def displacement_velocity_3d(robot_manager, robot):
+    return measures.displacement_velocity_3d(robot_manager)
+
+
+def displacement_velocity_vertical(robot_manager, robot):
+    _displacement_velocity_upward = measures.displacement_velocity_upward(robot_manager)
+    if _displacement_velocity_upward < 0:
+        _displacement_velocity_upward /= 10
+    elif _displacement_velocity_upward == 0:
+        _displacement_velocity_upward = -0.1
+    return _displacement_velocity_upward
+
+
 def online_old_revolve(robot_manager):
     """
     Fitness is proportional to both the displacement and absolute
