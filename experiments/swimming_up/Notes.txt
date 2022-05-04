@@ -1,0 +1,7 @@
+Folder for the 'swimming up' experiments.
+New calculations for measures and fitness have been implemented in the appropriate files in the pyrevolve folder.
+
+Installation instructions:
+Follow installation instructions for Revolve
+Navigate to experiments/underwater, follow the instructions there to build the buoyancy and lift&drag plugins, and place them in the correct folder.
+Note: For building the buoyancy plugin, the paths in the cmake files need to be replaced with the actual path to the desired folders.
