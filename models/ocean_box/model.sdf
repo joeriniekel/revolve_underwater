@@ -1,0 +1,50 @@
+<?xml version="1.0" ?>
+
+<sdf version="1.5">
+  <model name="ocean_box">
+    <static>true</static>
+    <link name="link">
+      <visual name="ground">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 -100 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100 100 .1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://tol_ground/materials/scripts</uri>
+            <uri>model://tol_ground/materials/textures</uri>
+            <name>Floor/Concrete1</name>
+          </script>
+        </material>
+      </visual>
+      <visual name="ceiling">
+        <cast_shadows>false</cast_shadows>
+        <transparency>0.8</transparency>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100 100 .1</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://sea_surface/materials/scripts</uri>
+            <uri>model://sea_surface/materials/textures</uri>
+            <name>UUVSimulator/SeaWall</name>
+          </script>
+        </material>
+      </visual>
+      <collision name="ground">
+        <pose>0 0 -100 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>100 100 .1</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
