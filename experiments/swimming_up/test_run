@@ -1,0 +1,10 @@
+#!/bin/bash
+while true
+	do
+         for i in {1..2}; do
+                ./revolve.py --experiment-name swimming_up/data/3d_$i --run $i --manager experiments/swimming_up/test_manager_3dDisplacement.py --world worlds/empty_underwater.world --z-start -95  --n-cores 1;
+                sleep 5s
+	              ./revolve.py --experiment-name swimming_up/data/vert_$i --run $i --manager experiments/swimming_up/test_manager_vertDisplacement.py --world worlds/empty_underwater.world --z-start -95 --n-cores 1;
+                sleep 5s
+	   done
+done

@@ -2,9 +2,9 @@
 while true
 	do
          for i in {1..10}; do
-                ./revolve.py --experiment_name swimming_up/data/3d_$i --run $i --manager experiments/swimming_up/manager_3dDisplacement.py --world worlds/empty_underwater.world --z-start -95  --n-cores 5;
+                ./revolve.py --experiment-name swimming_up/data/3d_$i --run $i --manager experiments/swimming_up/manager_3dDisplacement.py --world worlds/empty_underwater.world --z-start -95  --n-cores 5;
                 sleep 5s
-	              ./revolve.py --experiment_name swimming_up/data/vert_$i --run $i --manager experiments/swimming_up/manager_vertDisplacement.py --world worlds/empty_underwater.world --z-start -95 --n-cores 5;
+	              ./revolve.py --experiment-name swimming_up/data/vert_$i --run $i --manager experiments/swimming_up/manager_vertDisplacement.py --world worlds/empty_underwater.world --z-start -95 --n-cores 5;
                 sleep 5s
 	   done
 done
